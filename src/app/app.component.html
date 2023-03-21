@@ -1,0 +1,9 @@
+<h1>OCPP 1.6 эмулятор зарядный станций</h1>
+<app-connection></app-connection>
+<div>
+    <h2>
+        Конекторы
+    </h2>
+    <app-connector *ngFor="let connector of connectorsService.connectors" [connector]="connector"></app-connector>
+</div>
+<app-message-history></app-message-history>

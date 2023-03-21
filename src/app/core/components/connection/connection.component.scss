@@ -1,0 +1,49 @@
+.connection {
+    &__form {
+        display: flex;
+        background-color: rgb(218, 80, 80);
+        text-align: center;
+        padding: 10px;
+        color: white;
+        border-radius: 10px;
+
+        &_connected {
+            background: green;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        box-sizing: border-box;
+
+        &-container {
+            flex-grow: 1;
+            padding: 0 10px;
+        }
+    }
+
+    &__status {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        background: red;
+        border-radius: 50%;
+
+        &_connected {
+            background: green;
+        }
+    }
+
+    &__default-server {
+        background: #e4e9ed;
+        border-radius: 10px;
+        padding: 3px 5px;
+        margin-top: 5px;
+        margin-right: 10px;
+        cursor: pointer;
+
+        &-container {
+            display: flex;
+        }
+    }
+}

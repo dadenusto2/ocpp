@@ -1,0 +1,70 @@
+<div>
+    <button id="{{ 'button' + connector.connectorId }}" class="button-1"
+        (click)="myFunction(connector.connectorId)">Коннектор {{connector.connectorId}}</button>
+    <form id="{{ 'form' + connector.connectorId }}" style="display:none" [formGroup]="formGroup">
+        <table>
+            <tr>
+                <td>Значение счетчика</td>
+                <td>{{connector.meterValue}} Wh</td>
+            </tr>
+            <tr>
+                <td>ID транзакции</td>
+                <td>{{connector.transactionId || 'not set'}}</td>
+            </tr>
+            <tr>
+                <td>Уровень заряда</td>
+                <td>{{connector.soc$ ? (connector.soc$ | async | number:'1.0-2') + '%' : 'not set'}}</td>
+            </tr>
+        </table>
+        <div class="meterValue">
+            <div class="meterValue--send">
+                <div class="text-field">
+                    <label class="text-field__label" for="login">Значение, Вт .ч</label>
+                    <input class="text-field__input" type="number" formControlName="increaseMeterValueBy" />
+                </div>
+                <div class="meterValue--button">
+                    <button class="button-send" type="button" (click)="increaseMeterValue(connector)">Увеличить значение
+                        счетчика
+                        на</button>
+                    <button class="button-send" (click)="sendMeterValue()">Отправить значение счетчика</button>
+                </div>
+            </div>
+            <div class="meterValue--send">
+                <input type="checkbox" [id]="'autoSendMeterValues' + connector.connectorId"
+                    formControlName="autoSendMeterValues">
+                <label [for]="'autoSendMeterValues' + connector.connectorId">Автоматическая отправка значений
+                    счетчика</label>
+            </div>
+        </div>
+        <div class="meterValue">
+            <label class="text-field__label" for="login">Статус</label>
+            <div class="meterValue--send">
+                <div class="text-field">
+                    <select id="standard-select" formControlName="statusToInject">
+                        <option class="text-field__input" *ngFor="let status of connectorStatuses" [value]="status">
+                            {{status}}</option>
+                    </select>
+                </div>
+                <button class="button-send" (click)="sendStatus()">Изменить статус</button>
+            </div>
+        </div>
+        <div class="meterValue">
+            <div class="meterValue--send">
+                <input type="checkbox" [id]="'autoStartTransaction' + connector.connectorId"
+                    formControlName="autoStartTransaction">
+                <label [for]="'autoStartTransaction' + connector.connectorId">Автоматический запуск транзакции</label>
+            </div>
+
+            <div class="meterValue--send">
+                <input type="checkbox" [id]="'autoStopTransaction' + connector.connectorId"
+                    formControlName="autoStopTransaction">
+                <label [for]="'autoStopTransaction' + connector.connectorId">Автоматический остановка транзакции</label>
+            </div>
+            
+            <div class="meterValue--send">
+                <button class="button-send" (click)="startTransaction()">Отправить startTransaction</button>
+                <button class="button-send" (click)="stopTransaction()">Отправить stopTransaction</button><br>
+            </div>
+        </div>
+    </form>
+</div>

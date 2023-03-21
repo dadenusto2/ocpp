@@ -1,0 +1,12 @@
+<div>
+    <h3>История сообщений</h3>
+    <button (click)="clear()">clear</button>
+    <table>
+        <tr *ngFor="let row of messageHistory | sortBy:'asc':'entry.index'"
+            [class.message-history__charge-point-message]="row.source === 'chargePoint'">
+            <td>{{row.source}}</td>
+            <td class="message-history__message-text">{{row.entry.message | json}}</td>
+        </tr>
+    </table>
+
+</div>

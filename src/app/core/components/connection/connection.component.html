@@ -1,0 +1,16 @@
+<form class="connection__form" [formGroup]="formGroup" (ngSubmit)="onSubmit()"
+[class.connection__form_connected]="connectionService.isConnected">
+    Адрес:
+    <div class="connection__input-container">
+        <input class="connection__input" type="text"
+               formControlName="address">
+    </div>
+    <button>{{connectionService.isConnected ? 'Отключиться' : 'Подключиться'}}</button>
+</form>
+<div class="connection__default-server-container">
+    <div
+        class="connection__default-server"
+        *ngFor="let defaultServer of defaultServers"
+        (click)="onDefaultServerClick(defaultServer)"
+    >{{defaultServer}}</div>
+</div>
